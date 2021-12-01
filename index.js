@@ -17,9 +17,15 @@ app.listen(3001, function () {
 
 
 
-
 app.get('/api/songs', (req, res) => {
     console.log("GET all songs triggered!")
     const songs = repoContext.songs.findAllSongs()
     return res.send(songs)
-})
+});
+
+app.get('/api/songs/:id', (req,res) => {
+    console.log("GET song by ID triggered!")
+    const id = req.params.id;
+    const song = repoContext.songs.findSongById(id);
+    return res.send(song);
+});
